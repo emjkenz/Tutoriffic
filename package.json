@@ -1,5 +1,5 @@
 {
-  "name": "tech-matchup-app",
+  "name": "tutoriffic-student",
   "version": "1.0.0",
   "description": "A virtual online learning platform",
   "main": "server/server.js",
