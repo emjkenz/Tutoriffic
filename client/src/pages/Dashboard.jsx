@@ -49,6 +49,7 @@ const Dashboard = () => {
 const Item = ({
   title,
   description,
+  color,
 }) => {
   return (
     <article className={styles.item}>
