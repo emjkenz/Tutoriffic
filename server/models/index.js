@@ -1,4 +1,4 @@
-const Grades = require('./Grades');
-const Modules = require('./Modules');
+const { Grades, Auth } = require("./Grades");
+const Modules = require("./Modules");
 
-module.exports = { Grades, Modules };
+module.exports = { Grades, Modules, Auth };
