@@ -1,4 +1,3 @@
-import React from 'react';
 // can put the logo here, will show top left
 import Logo from '';
 
