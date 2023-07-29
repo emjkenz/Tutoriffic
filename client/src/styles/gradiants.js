@@ -9,3 +9,5 @@ export const PinkCandy = 'background: linear-gradient(135deg, #ff9a9e, #fecfef);
 export const DarkOcean = 'background: linear-gradient(135deg, #373b44, #4286f4);';
 export const VioletDreams = 'background: linear-gradient(135deg, #a044ff, #00d99b);';
 export const OrangeHorizon = 'background: linear-gradient(135deg, #ff8008, #ffc837);';
+export const DarkOrangeHorizon = 'background: linear-gradient(135deg, #ff8008, #ff8008);';
+export const SpringGreens = 'background: linear-gradient(135deg, #009fff, #ec2f4b);';
