@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './navbar.css'
+import Logo from '../Assets/Logo.webp';
+import { Image } from '@mantine/core';
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false)
@@ -13,6 +15,9 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="container">
         <div className="logo">
+          <NavLink to="/">
+            <Image maw={50} mx="auto" radius="md" src={Logo} alt="Tutorific Logo" />
+          </NavLink>
         </div>
         <div className="menu-icon" onClick={handleShowNavbar}>
         </div>
@@ -36,7 +41,7 @@ const Navbar = () => {
             <li>
               <NavLink to="/Login">Login</NavLink>
             </li>
-            
+
           </ul>
         </div>
       </div>
