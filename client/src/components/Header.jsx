@@ -1,5 +1,5 @@
 // can put the logo here, will show top left
-import Logo from '';
+import Logo from '../Assets/Logo.webp';
 
 const Header = () => {
   return (
@@ -15,5 +15,4 @@ const Header = () => {
     </header>
   );
 };
-<a href='#contact' className='btn btn-lg'>Button poggers</a>
 export default Header;
