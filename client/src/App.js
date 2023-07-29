@@ -4,7 +4,10 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/nav";
 import NotFound from "./pages/NotFound";
-import Homepage from "./pages/Homepage";
+import Homepage from "./pages/homepage";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
+
 const client = new ApolloClient({
   uri: "/graphql",
   cache: new InMemoryCache(),
@@ -19,6 +22,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />;
             <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Signup" element={<Signup />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

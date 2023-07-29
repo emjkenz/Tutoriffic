@@ -1,24 +1,20 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require("mongoose");
+const User = require("./User");
 
-const matchupSchema = new Schema({
-  tech1: {
+const authSchema = new mongoose.Schema({
+  token: mongoose.Types.ObjectId,
+  user: { type: mongoose.Types.ObjectId, ref: User },
+});
+
+const listingSchema = new mongoose.Schema({
+  grade: {
     type: String,
+    enum: ["A", "B", "C", "D", "E", "F"],
     required: true,
-  },
-  tech2: {
-    type: String,
-    required: true,
-  },
-  tech1_votes: {
-    type: Number,
-    default: 0,
-  },
-  tech2_votes: {
-    type: Number,
-    default: 0,
   },
 });
 
-const Matchup = model('Matchup', matchupSchema);
+const Auth = mongoose.model("Auth", authSchema);
+const Grades = mongoose.model("Listing", listingSchema);
 
-module.exports = Matchup;
+module.exports = { Auth, Grades };
