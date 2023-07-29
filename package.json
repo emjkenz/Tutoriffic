@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A virtual online learning platform",
   "main": "server/server.js",
+  "resolutions": {
+    "styled-components": "^5"
+  },
   "scripts": {
     "start": "node server/server.js --ignore client",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
