@@ -1,5 +1,5 @@
 // can put the logo here, will show top left
-import Logo from '../Assets/Logo.webp';
+import Logo from '../assets/Logo.webp';
 
 const Header = () => {
   return (

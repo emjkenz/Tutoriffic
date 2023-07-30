@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './navbar.css'
-import Logo from '../Assets/Logo.webp';
+import Logo from '../assets/Logo.webp';
 import { Image } from '@mantine/core';
 
 const Navbar = () => {

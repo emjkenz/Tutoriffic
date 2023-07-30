@@ -2,13 +2,13 @@ import { Center, Grid, Title, Text, Image, BackgroundImage } from "@mantine/core
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 // Images
-import ChildrenLearning from "../Assets/children-learning.jpg"
-import KidsPlaying from "../Assets/kids-playing.jpg"
-import KidsStudying from "../Assets/kids-studying.jpg"
-import FingerPainting from "../Assets/finger-painting.jpg"
-import BlockStacking from "../Assets/block-stacking.jpg"
-import BlueSky from "../Assets/blue-sky.jpg"
-import Logo from "../Assets/Logo.webp"
+import ChildrenLearning from "../assets/children-learning.jpg"
+import KidsPlaying from "../assets/kids-playing.jpg"
+import KidsStudying from "../assets/kids-studying.jpg"
+import FingerPainting from "../assets/finger-painting.jpg"
+import BlockStacking from "../assets/block-stacking.jpg"
+import BlueSky from "../assets/blue-sky.jpg"
+import Logo from "../assets/Logo.webp"
 
 import { DarkOrangeHorizon, OrangeHorizon } from '../styles/gradiants'
 
