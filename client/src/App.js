@@ -17,15 +17,13 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Navbar />
-        <div className="flex-column justify-center align-center min-100-vh bg-primary">
-          <Routes>
-            <Route path="/" element={<Homepage />} />;
-            <Route path="/Dashboard" element={<Dashboard />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/Signup" element={<Signup />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Homepage />} />;
+          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Signup" element={<Signup />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </Router>
     </ApolloProvider>
   );
