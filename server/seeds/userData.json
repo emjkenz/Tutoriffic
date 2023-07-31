@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "firstName": "Jack",
+    "lastName": "Collins",
+    "dateOfBirth": "2015/05/15",
+    "schoolingLevel": "Grade 2"
+  },
+  {
+    "id": "2",
+    "firstName": "Emily",
+    "lastName": "Smith",
+    "dateOfBirth": "2016/11/20",
+    "schoolingLevel": "Grade 1"
+  }
+]
