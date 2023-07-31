@@ -1,28 +1,41 @@
+import { Center, Container, Grid, Title, Text } from '@mantine/core';
 import styles from './dashboard.module.css'
 import { Link } from "react-router-dom";
 
 const dummyData = {
   name: "John Doe",
   attendance: 100,
-  grade: "B-"
+  grade: "B-",
+  modules: [
+    {
+      name: "Maths",
+      grade: "A",
+    },
+    {
+      name: "English",
+      grade: "B",
+    },
+    {
+      name: "Science",
+      grade: "C",
+    },
+  ],
 }
 
 const Dashboard = () => {
   return (
-    <div className={styles.dashboard}>
-      <section className={styles.sidebar}>
-        <Sidebar />
-      </section>
-      <section className={styles.main}>
-        <div className={styles.content}>
-          <h1 className={styles.title}>Dashboard</h1>
-          <h2 className={styles.subtitle}>Welcome {dummyData.name}!</h2>
+    <Container>
+      <Grid>
+        <Grid.Col span={12}>
+          <Center p="md">
+            <Title order={1}>Dashboard</Title>
+          </Center>
+          <Title py="md" order={2}>Welcome <Text variant="gradient" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }} sx={{ display: "inline-block" }}>{dummyData.name}!</Text></Title>
           <div className={styles.items}>
             <Item
               title={"Attendance"}
               description={dummyData.attendance + "/100%"}
             />
-
             <Item
               title={"Modules"}
               description={
@@ -33,16 +46,21 @@ const Dashboard = () => {
                 </ul>
               }
             />
-
             <Item
               title={"Assigments"}
-              description={"you have 3 assigments for maths due on the 2nd of august"}
+              description={
+                dummyData.modules.map((module) =>
+                  <div>
+                    <p><strong>{module.name}</strong>:{module.grade}</p>
+                  </div>
+                )
+              }
             />
           </div>
-        </div>
-      </section>
-    </div>
-    )
+        </Grid.Col>
+      </Grid>
+    </Container>
+  )
 }
 
 const Item = ({
