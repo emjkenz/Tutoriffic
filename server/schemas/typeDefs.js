@@ -52,10 +52,12 @@ const typeDefs = gql`
     students: [Student]
     auth: [User]
     grade: Listing
+    loggedInUser: User
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    loginUser(email: String!, password: String!): Auth
   }
 `;
 
