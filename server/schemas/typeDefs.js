@@ -26,26 +26,25 @@ const typeDefs = gql`
     user: User!
   }
 
-  type Grade {
+  type Student {
     id: String!
-    student: Student!
-    quiz: Quiz!
-    grade: Float!
+    firstName: String!
+    lastName: String!
+    dateOfBirth: String!
+    schoolingLevel: String!
   }
 
-  type Lesson {
-    id: String!
-    title: String!
-    date: String!
-    sections: [Sections]!
-    createdBy: ID!
+  enum Grade {
+    A
+    B
+    C
+    D
+    E
+    F
   }
 
-  input LessonInput {
-    id: String!
-    title: String!
-    date: String!
-    sections: [SectionInput]!
+  type Listing {
+    grade: Grade
   }
 
   type Query {
@@ -57,10 +56,6 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    lessons: [Lesson]
-    lesson(id: String!): Lesson
-    grades: [Grade]
-    users: [User]
   }
 `;
 
