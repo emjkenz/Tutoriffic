@@ -9,20 +9,18 @@ const resolvers = {
     grade: async () => {
       return await Grades.findOne({ enum: String });
     },
+  },
 
-    Mutation: {
-      addUser: async (parent, { userData }) => {
-        console.log("Received User Data:", userData);
-        const { firstName, lastName, email, password } = userData;
-        const user = await User.create({
-          firstName,
-          lastName,
-          email,
-          password,
-        });
-        const token = signToken(user);
-        return { token, user };
-      },
+  Mutation: {
+    addUser: async (parent, { firstName, lastName, email, password }) => {
+      const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+      const token = signToken(user);
+      return { token, user };
     },
   },
 };
