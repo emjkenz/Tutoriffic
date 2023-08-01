@@ -9,6 +9,11 @@ const typeDefs = gql`
     password: String!
   }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   input UserInput {
     firstName: String!
     lastName: String!
@@ -45,10 +50,12 @@ const typeDefs = gql`
   type Query {
     GetGrade: [Listing]
     students: [Student]
+    auth: [User]
+    grade: Listing
   }
 
   type Mutation {
-    addUser(userData: UserInput!): AuthPayload
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
   }
 `;
 
