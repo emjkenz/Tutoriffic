@@ -5,7 +5,6 @@ import Auth from "../utils/auth";
 import { CREATE_USER } from '../utils/mutations'
 import { Center, Container, BackgroundImage, Grid, Title, Input, Button } from "@mantine/core"
 import background from "../Assets/teachers-desk.jpg"
-import styled from "styled-components"
 import { At, CursorText, Lock } from 'tabler-icons-react';
 import { StyledBreadcrumb } from "../components/StyledBreadcrumb";
 import { FormGroup } from "../components/FormGroup";
@@ -28,8 +27,12 @@ const SignupForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("entered form submit");
-    console.log(userFormData);
+    const {data} = await addUser({
+      variables: {...formState}
+    });
+    const { token, user } = await data.addUser;
+    Auth.login(token);
+  };
 
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;

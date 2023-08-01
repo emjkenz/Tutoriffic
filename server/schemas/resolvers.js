@@ -30,38 +30,37 @@ const resolvers = {
 
       return foundLesson;
     },
+  },
 
-    Mutation: {
-      createUser: async (parent, { firstName, lastName, email, password }) => {
-        const user = await User.create({
-          firstName,
-          lastName,
-          email,
-          password,
-        });
-        const token = signToken(user);
+  Mutation: {
+    addUser: async (parent, { firstName, lastName, email, password }) => {
+      const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+      const token = signToken(user);
+      return { token, user };
+    },
+    loginUser: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
-        return { token, user };
-      },
-      loginUser: async (parent, { email, password }) => {
-        const user = await User.findOne({ email });
+      if (!user) {
+        throw new AuthenticationError(
+          "No user found with this email address"
+        );
+      }
 
-        if (!user) {
-          throw new AuthenticationError(
-            "No user found with this email address"
-          );
-        }
+      const correctPw = await user.isCorrectPassword(password);
 
-        const correctPw = await user.isCorrectPassword(password);
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
 
-        if (!correctPw) {
-          throw new AuthenticationError("Incorrect credentials");
-        }
+      const token = signToken(user);
 
-        const token = signToken(user);
-
-        return { token, user };
-      },
+      return { token, user };
     },
   },
 };

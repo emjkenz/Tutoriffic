@@ -14,6 +14,18 @@ const typeDefs = gql`
     user: User
   }
 
+  input UserInput {
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
+  }
+
+  type AuthPayload {
+    token: String!
+    user: User!
+  }
+
   type Grade {
     id: String!
     student: Student!
@@ -37,22 +49,18 @@ const typeDefs = gql`
   }
 
   type Query {
+    GetGrade: [Listing]
+    students: [Student]
+    auth: [User]
+    grade: Listing
+  }
+
+  type Mutation {
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     lessons: [Lesson]
     lesson(id: String!): Lesson
     grades: [Grade]
     users: [User]
-  }
-
-  type Mutation {
-    createUser(
-      firstName: String!
-      lastName: String!
-      email: String!
-      password: String!
-    ): Auth
-    saveLesson(lessonData: LessonInput!): Lesson
-    removeLesson(id: String!): Lesson
-    loginUser(email: String!, password: String!): Auth
   }
 `;
 
