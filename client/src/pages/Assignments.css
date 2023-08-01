@@ -1,0 +1,30 @@
+/* Sidebar */
+
+.Sidebar_title {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.Sidebar_nav {
+    list-style: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.Sidebar_nav li {
+    border-bottom: 1px solid #000;
+    padding: 10px;
+}
+
+.Sidebar_nav li:first-child {
+    border-top: 1px solid #000;
+}
+
+.Sidebar {
+    width: 15%;
+    height: 100vh;
+    position: fixed;
+    background: #444;
+}
