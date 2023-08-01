@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const dummyData = {
   name: "John Doe",
-  attendance: 100,
+  attendance: 89,
   grade: "B-"
 }
 
