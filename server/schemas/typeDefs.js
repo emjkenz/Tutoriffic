@@ -9,46 +9,50 @@ const typeDefs = gql`
     password: String!
   }
 
-  input UserInput {
-    firstName: String!
-    lastName: String!
-    email: String!
-    password: String!
+  type Auth {
+    token: ID!
+    user: User
   }
 
-  type AuthPayload {
-    token: String!
-    user: User!
-  }
-
-  type Student {
+  type Grade {
     id: String!
-    firstName: String!
-    lastName: String!
-    dateOfBirth: String!
-    schoolingLevel: String!
+    student: Student!
+    quiz: Quiz!
+    grade: Float!
   }
 
-  enum Grade {
-    A
-    B
-    C
-    D
-    E
-    F
+  type Lesson {
+    id: String!
+    title: String!
+    date: String!
+    sections: [Sections]!
+    createdBy: ID!
   }
 
-  type Listing {
-    grade: Grade
+  input LessonInput {
+    id: String!
+    title: String!
+    date: String!
+    sections: [SectionInput]!
   }
 
   type Query {
-    GetGrade: [Listing]
-    students: [Student]
+    lessons: [Lesson]
+    lesson(id: String!): Lesson
+    grades: [Grade]
+    users: [User]
   }
 
   type Mutation {
-    addUser(userData: UserInput!): AuthPayload
+    createUser(
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+    ): Auth
+    saveLesson(lessonData: LessonInput!): Lesson
+    removeLesson(id: String!): Lesson
+    loginUser(email: String!, password: String!): Auth
   }
 `;
 
