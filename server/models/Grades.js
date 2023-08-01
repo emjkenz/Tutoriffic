@@ -1,20 +1,30 @@
 const mongoose = require("mongoose");
-const User = require("./User");
 
-const authSchema = new mongoose.Schema({
-  token: mongoose.Types.ObjectId,
-  user: { type: mongoose.Types.ObjectId, ref: User },
-});
+const { Schema } = mongoose;
 
-const listingSchema = new mongoose.Schema({
-  grade: {
-    type: String,
-    enum: ["A", "B", "C", "D", "E", "F"],
+const gradeSchema = new Schema({
+  student: {
+    type: Schema.Types.ObjectId,
+    ref: "Student",
     required: true,
+  },
+  quiz: {
+    type: Schema.Types.ObjectId,
+    ref: "Quiz",
+    required: true,
+  },
+  gradeNumber: {
+    type: Number,
+    required: true,
+  },
+  gradePercentage: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 100,
   },
 });
 
-const Auth = mongoose.model("Auth", authSchema);
-const Grades = mongoose.model("Listing", listingSchema);
+const Grade = mongoose.model("Grade", gradeSchema);
 
-module.exports = { Auth, Grades };
+module.exports = Grade;
