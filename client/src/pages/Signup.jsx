@@ -2,68 +2,34 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
-import { CREATE_USER } from '../utils/mutations'
+import { ADD_USER } from "../utils/mutations";
 import { Center, Container, BackgroundImage, Grid, Title, Input, Button } from "@mantine/core"
 import background from "../Assets/teachers-desk.jpg"
 import { At, CursorText, Lock } from 'tabler-icons-react';
 import { StyledBreadcrumb } from "../components/StyledBreadcrumb";
 import { FormGroup } from "../components/FormGroup";
 
-const SignupForm = () => {
-  // set initial form state
-  const [userFormData, setUserFormData] = useState({ firstName: '', lastName: '', email: '', password: '' });
-  // set state for form validation
-  const [validated] = useState(false);
-  // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
-
-  const [createUser, { error, data }] = useMutation(CREATE_USER);
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-    console.log(userFormData);
-  };
+function Signup(props) {
+  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [addUser] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const {data} = await addUser({
-      variables: {...formState}
+    const { data } = await addUser({
+      variables: { ...formState }
     });
     const { token, user } = await data.addUser;
     Auth.login(token);
   };
 
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    try {
-      const { data } = await createUser({
-        variables: { ...userFormData }
-      });
-      if (!data.createUser) {
-        throw new Error('something went wrong!');
-      }
-
-      const { token, user } = await data.createUser;
-      console.log(user);
-      Auth.login(token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
-
-    setUserFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
     });
   };
+
   return (
     <BackgroundImage src={background}
       style={{ height: "90vh" }}
@@ -90,7 +56,7 @@ const SignupForm = () => {
                     name="firstName"
                     type="text"
                     id="firstName"
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                   />
                 </FormGroup>
                 <FormGroup>
@@ -101,7 +67,7 @@ const SignupForm = () => {
                     name="lastName"
                     type="text"
                     id="lastName"
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                   />
                 </FormGroup>
                 <FormGroup>
@@ -112,7 +78,7 @@ const SignupForm = () => {
                     name="email"
                     type="email"
                     id="email"
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                   />
                 </FormGroup>
                 <FormGroup>
@@ -123,7 +89,7 @@ const SignupForm = () => {
                     name="password"
                     type="password"
                     id="pwd"
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                   />
                 </FormGroup>
                 <div className="flex-row flex-end">
@@ -138,4 +104,4 @@ const SignupForm = () => {
   );
 }
 
-export default SignupForm;
+export default Signup;
