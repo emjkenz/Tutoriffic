@@ -1,7 +1,16 @@
 import { useQuery } from '@apollo/client';
-import { QUERY_LOGEDIN } from '../utils/queries';
+import { QUERY_LOGEDIN, QUERY_ALL_QUIZZES } from '../utils/queries';
 import styles from './dashboard.module.css'
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Container, Grid, Title, Center, Text, Box, Divider } from '@mantine/core';
+import { Link, NavLink } from 'react-router-dom';
+import QuizTile from '../components/QuizTile';
+import { Divide } from 'tabler-icons-react';
+import styled from 'styled-components';
+
+const QuizContainer = styled(Box)`
+  /* border: 1px solid #ccc; */
+`
 
 const dummyData = {
   name: "John Doe",
@@ -9,54 +18,77 @@ const dummyData = {
   grade: "B-"
 }
 
+const dummyQuiz = [
+  {
+    id: 1,
+    title: "Dummy Quiz",
+    description: "Share your knowledge with the world!",
+    date: "2023-08-05T00:00:00.000Z",
+    questions: [
+      {
+        question: "What is the capital of France?",
+        answers: ["Paris", "London", "Berlin", "Madrid"],
+      },
+      {
+        question: "What is the capital of Spain?",
+        answers: ["Paris", "London", "Berlin", "Madrid"],
+      },
+      {
+        question: "What is the capital of Germany?",
+        answers: ["Paris", "London", "Berlin", "Madrid"],
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Dummy Quiz 2",
+    description: "Share your knowledge with the world!",
+    date: "2023-08-05T00:00:00.000Z",
+    questions: [
+      {
+        question: "What is the capital of Spain?",
+        answers: ["Paris", "London", "Berlin", "Madrid"],
+      },
+      {
+        question: "What is the capital of Germany?",
+        answers: ["Paris", "London", "Berlin", "Madrid"],
+      },
+    ],
+  }
+];
+
 const Dashboard = () => {
-  const { data, loading, error } = useQuery(QUERY_LOGEDIN);
+  const user = useQuery(QUERY_LOGEDIN);
+  const quizzes = useQuery(QUERY_ALL_QUIZZES);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  const user = data.loggedInUser;
-
+  const myUser = user?.data?.loggedInUser;
+  const myQuizzes = /*quizzes.data.quizzes*/dummyQuiz;
+  console.log(myQuizzes);
   return (
-    <div className={styles.dashboard}>
-      <section className={styles.sidebar}>
-        <Sidebar />
-      </section>
-      <section className={styles.main}>
-        <div className={styles.content}>
-          <h1 className={styles.title}>Dashboard</h1>
-          <h2 className={styles.subtitle}>Welcome {user.firstName} {user.lastName}!</h2>
-          <div className={styles.items}>
-            <Item
-              title={"Attendance"}
-              description={dummyData.attendance + "/100%"}
-            />
+    <Container>
+      <Grid>
+        <Grid.Col span={12}>
+          <Title order={1}>Dashboard</Title>
+          <Title order={2}>Welcome <Text variant="gradient" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }} sx={{ display: 'inline-block' }}>{myUser?.firstName} {myUser?.lastName}!</Text></Title>
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <Title order={3}>Quizes</Title>
+          <QuizContainer>
+            <Center>
+              {myQuizzes?.map((quiz) => (
+                <QuizTile key={quiz.id} quiz={quiz} />
+              ))}
+            </Center>
+          </QuizContainer>
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <Divider my="sm" variant='solid' />
+        </Grid.Col>
 
-            <Item
-              title={"Modules"}
-              description={
-                <ul>
-                  <li>Maths</li>
-                  <li>English</li>
-                  <li>Science</li>
-                </ul>
-              }
-            />
+      </Grid>
+    </Container>
 
-            <Item
-              title={"Assigments"}
-              description={"you have 3 assigments for maths due on the 2nd of august"}
-            />
-          </div>
-        </div>
-      </section>
-    </div>
-    )
+  )
 }
 
 const Item = ({
