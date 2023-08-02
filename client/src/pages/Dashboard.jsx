@@ -1,13 +1,27 @@
+import { useQuery } from '@apollo/client';
+import { QUERY_LOGEDIN } from '../utils/queries';
 import styles from './dashboard.module.css'
 import { Link } from "react-router-dom";
 
 const dummyData = {
   name: "John Doe",
-  attendance: 100,
+  attendance: 89,
   grade: "B-"
 }
 
 const Dashboard = () => {
+  const { data, loading, error } = useQuery(QUERY_LOGEDIN);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  const user = data.loggedInUser;
+
   return (
     <div className={styles.dashboard}>
       <section className={styles.sidebar}>
@@ -16,7 +30,7 @@ const Dashboard = () => {
       <section className={styles.main}>
         <div className={styles.content}>
           <h1 className={styles.title}>Dashboard</h1>
-          <h2 className={styles.subtitle}>Welcome {dummyData.name}!</h2>
+          <h2 className={styles.subtitle}>Welcome {user.firstName} {user.lastName}!</h2>
           <div className={styles.items}>
             <Item
               title={"Attendance"}

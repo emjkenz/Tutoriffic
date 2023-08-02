@@ -5,7 +5,6 @@ import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
 import { Center, Container, BackgroundImage, Grid, Title, Input, Button } from "@mantine/core"
 import background from "../Assets/teachers-desk.jpg"
-import styled from "styled-components"
 import { At, CursorText, Lock } from 'tabler-icons-react';
 import { StyledBreadcrumb } from "../components/StyledBreadcrumb";
 import { FormGroup } from "../components/FormGroup";
@@ -16,15 +15,10 @@ function Signup(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const mutationResponse = await addUser({
-      variables: {
-        email: formState.email,
-        password: formState.password,
-        firstName: formState.firstName,
-        lastName: formState.lastName,
-      },
+    const { data } = await addUser({
+      variables: { ...formState }
     });
-    const token = mutationResponse.data.addUser.token;
+    const { token, user } = await data.addUser;
     Auth.login(token);
   };
 
@@ -60,7 +54,7 @@ function Signup(props) {
                     placeholder="First"
                     icon={<CursorText size={16} />}
                     name="firstName"
-                    type="firstName"
+                    type="text"
                     id="firstName"
                     onChange={handleChange}
                   />
@@ -71,7 +65,7 @@ function Signup(props) {
                     placeholder="Last"
                     icon={<CursorText size={16} />}
                     name="lastName"
-                    type="lastName"
+                    type="text"
                     id="lastName"
                     onChange={handleChange}
                   />
