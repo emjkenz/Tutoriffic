@@ -17,9 +17,9 @@ const Maths = () => {
                 </h3>
             </div>
 
-            <Container size="30rem" px={2} style={{ position: 'relative', left: -500, top: -500, }}>>
-                <h3>Hi</h3> Division and subtraction
-
+            <Container size="30rem" px={2} style={{ position: 'relative', left: -500, top: -500, }}>
+                <h3>Division and subtraction</h3> <h4>Teacher: Mr Miyagi</h4> In todays lesson we are building upon the skills we learned and practiced in our previous class. Now that you have mastered multiplication and addition, we are excited to help you master the fun skills of division and subtraction!
+                When you are ready, click the play button so we can get started!
             </Container>
 
         </BackgroundImage >
