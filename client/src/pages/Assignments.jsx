@@ -8,6 +8,7 @@ import brushes from '../Assets/assignments/paintBrushesRS.jpg';
 import play from '../Assets/assignments/playButton2.jpg';
 import Logo from "../Assets/Logo.webp"
 import background from "../Assets/assignments/assignmentBackground.jpg"
+import { StyledBreadcrumb } from "../components/StyledBreadcrumb";
 
 
 const Assignments = () => {
@@ -27,11 +28,18 @@ const Sidebar = () => {
         <div className={styles.Sidebar}>
             <div className={styles.Sidebar_title}>Menu</div>
             <ul className={styles.Sidebar_nav}>
-                <button className={styles.mathButton}>Maths</button>
-                <button className={styles.englishButton}>English</button>
-                <button className={styles.scienceButton}>Sciences</button>
-                <button className={styles.artButton}>Arts</button>
-
+                <StyledBreadcrumb>
+                    <Link to="/Maths">← Maths</Link>
+                </StyledBreadcrumb>
+                <StyledBreadcrumb>
+                    <Link to="/English">← English</Link>
+                </StyledBreadcrumb>
+                <StyledBreadcrumb>
+                    <Link to="/Sciences">← Sciences</Link>
+                </StyledBreadcrumb>
+                <StyledBreadcrumb>
+                    <Link to="/Arts">← Arts</Link>
+                </StyledBreadcrumb>
             </ul>
         </div>
 

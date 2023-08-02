@@ -8,6 +8,10 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Assignments from "./pages/Assignments";
 import Footer from "./components/Footer";
+import Maths from "./pages/Maths";
+import English from "./pages/English";
+import Sciences from "./pages/Sciences";
+import Arts from "./pages/Arts";
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -27,6 +31,10 @@ function App() {
             <Route path="/Signup" element={<Signup />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/Assignments" element={<Assignments />} />
+            <Route path="/Maths" element={<Maths />} />
+            <Route path="/English" element={<English />} />
+            <Route path="/Sciences" element={<Sciences />} />
+            <Route path="/Arts" element={<Arts />} />
           </Routes>
         </div>
         <Footer />
