@@ -15,8 +15,10 @@ const Assignments = () => {
         <BackgroundImage src={background} style={{ height: "90vh" }}>
             <div>
                 <Sidebar />
-                <img className="playButton" src={play} style={{ height: 600, width: 1000, position: 'relative', left: 900, top: 50, }} />
-                <h3 className="assText" style={{ position: 'relative', left: 1250, top: 40, }}>Click play to begin todays lesson!</h3>
+                <Center sx={{ flexDirection: "column", marginLeft: '15%' }}>
+                    <img className="playButton" src={play} style={{ height: 600, width: 1000 }} />
+                    <h3 className="assText">Click play to begin todays lesson!</h3>
+                </Center>
             </div>
         </BackgroundImage >
     )

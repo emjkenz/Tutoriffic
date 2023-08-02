@@ -1,4 +1,7 @@
-const typeDefs = require("./typeDefs");
-const resolvers = require("./resolvers");
+const { Grades, Auth } = require("./Grades");
+const Modules = require("./Modules");
+const User = require("./User");
+const Quiz = require("./Quiz");
+const Question = require("./Question");
 
-module.exports = { typeDefs, resolvers };
+module.exports = { Grades, Modules, Auth, User, Quiz, Question };

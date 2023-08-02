@@ -39,3 +39,8 @@ class Auth {
 }
 
 export default new Auth();
+
+export function isLoggedIn() {
+  const token = localStorage.getItem('id_token');
+  return !!token;
+}
