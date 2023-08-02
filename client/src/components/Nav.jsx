@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { NavLink, Navigate } from 'react-router-dom'
 import './navbar.css'
 import Logo from '../Assets/Logo.webp';
-import { Image } from '@mantine/core';
+import { Button, Image } from '@mantine/core';
+import { isLoggedIn } from "../utils/auth";
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false)
@@ -10,6 +11,23 @@ const Navbar = () => {
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar)
   }
+
+  const [loggedIn, setLoggedIn] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("id_token");
+    setLoggedIn(Boolean(token));
+  }, []);
+
+  useEffect(() => {
+    setLoggedIn(isLoggedIn());
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('id_token');
+    setLoggedIn(false);
+    window.location.assign('/');
+  };
 
   return (
     <nav className="navbar">
@@ -35,13 +53,18 @@ const Navbar = () => {
             <li>
               <NavLink to="/Modules">Modules</NavLink>
             </li>
-            <li>
-              <NavLink to="/Dashboard">Dashboard</NavLink>
-            </li>
+            {loggedIn &&
+              <>
+                <li>
+                  <NavLink to="/Dashboard">Dashboard</NavLink>
+                </li>
+              </>}
             <li>
               <NavLink to="/Login">Login</NavLink>
             </li>
-
+            {loggedIn && <li>
+              <Button onClick={handleLogout}>Logout</Button>
+            </li>}
           </ul>
         </div>
       </div>
