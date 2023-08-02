@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, redirect } from "react-router-dom";
 import {
   ApolloClient,
   ApolloProvider,
@@ -18,6 +18,10 @@ import Maths from "./pages/Maths";
 import English from "./pages/English";
 import Sciences from "./pages/Sciences";
 import Arts from "./pages/Arts";
+import Quiz from "./pages/Quiz";
+import ProtectedRoute from "./components/ProtectedRoutes";
+import { useState, useEffect } from "react";
+import { isLoggedIn } from "./utils/auth";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -41,7 +45,18 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
+
 function App() {
+  const [loggedIn, setLoggedIn] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("id_token");
+    setLoggedIn(Boolean(token));
+  }, []);
+
+  useEffect(() => {
+    setLoggedIn(isLoggedIn());
+  }, []);
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -49,7 +64,12 @@ function App() {
         <div className="flex-column justify-center align-center min-100-vh bg-primary">
           <Routes>
             <Route path="/" element={<Homepage />} />;
-            <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="/Dashboard" element={<ProtectedRoute />}>
+              <Route path="/Dashboard" element={<Dashboard />} />
+            </Route>
+            <Route path="/Quiz/:id" element={<ProtectedRoute />}>
+              <Route path="/Quiz/:id" element={<Quiz />} />
+            </Route>
             <Route path="/Login" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />
             <Route path="*" element={<NotFound />} />
