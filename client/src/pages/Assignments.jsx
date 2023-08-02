@@ -10,7 +10,6 @@ import Logo from "../Assets/Logo.webp"
 import background from "../Assets/assignments/assignmentBackground.jpg"
 import { StyledBreadcrumb } from "../components/StyledBreadcrumb";
 
-
 const Assignments = () => {
     return (
         <BackgroundImage src={background} style={{ height: "90vh" }}>
