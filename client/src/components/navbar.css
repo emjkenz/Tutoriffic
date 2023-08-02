@@ -23,24 +23,21 @@ body {
   position: relative;
 }
 
-.logo {
-}
+.logo {}
 
 .menu-icon {
   display: none;
 }
 
 .nav-elements {
+  width: 80%;
 }
 
 .nav-elements ul {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   list-style-type: none;
-}
-
-.nav-elements ul li:not(:last-child) {
-  margin-right: 60px;
 }
 
 .nav-elements ul a {
