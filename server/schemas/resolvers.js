@@ -1,4 +1,4 @@
-const { User, Auth, Grades } = require("../models");
+const { User, Auth, Grades, Quiz } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -14,6 +14,22 @@ const resolvers = {
         return null;
       }
       return user;
+    },
+    quizzes: async (parent, args, { user }) => {
+      if (!user) {
+        throw new `AuthenticationError`('You must be logged in to view your lessons.');
+      }
+
+      const userQuizzes = await Quiz.find({ createdBy: user._id });
+
+      return userQuizzes;
+    },
+    quiz: async (parent, { id }) => {
+      const foundQuiz = await Quiz.findOne({ id: id });
+      if (!foundQuiz) {
+        throw new Error('Cannot find a quiz with this id!');
+      }
+      return foundQuiz;
     },
   },
 
