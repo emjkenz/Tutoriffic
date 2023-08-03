@@ -5,8 +5,13 @@ import { useEffect, useState } from 'react';
 import { Container, Grid, Title, Center, Text, Box, Divider } from '@mantine/core';
 import { Link, NavLink } from 'react-router-dom';
 import QuizTile from '../components/QuizTile';
-import { Divide } from 'tabler-icons-react';
+import { Ce, Divide } from 'tabler-icons-react';
 import styled from 'styled-components';
+import AssignmentTile from '../components/AssignmentTile';
+import Maths from '../Assets/assignments/calculator.jpg';
+import English from '../Assets/assignments/childReading.jpg';
+import Science from '../Assets/assignments/scienceKid.jpg';
+import Arts from '../Assets/assignments/artKid.jpg';
 
 const QuizContainer = styled(Box)`
   /* border: 1px solid #ccc; */
@@ -68,8 +73,11 @@ const Dashboard = () => {
     <Container>
       <Grid>
         <Grid.Col span={12}>
-          <Title order={1}>Dashboard</Title>
-          <Title order={2}>Welcome <Text variant="gradient" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }} sx={{ display: 'inline-block' }}>{myUser?.firstName} {myUser?.lastName}!</Text></Title>
+          <Title order={1} py="md">Dashboard</Title>
+          <Title order={2} mt="md">Welcome <Text variant="gradient" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }} sx={{ display: 'inline-block' }}>{myUser?.firstName} {myUser?.lastName}!</Text></Title>
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <Divider my="sm" variant='solid' />
         </Grid.Col>
         <Grid.Col span={12}>
           <Title order={3}>Quizes</Title>
@@ -81,10 +89,43 @@ const Dashboard = () => {
             </Center>
           </QuizContainer>
         </Grid.Col>
-        <Grid.Col span={12}>
+        <Grid.Col span={12} mb="md">
           <Divider my="sm" variant='solid' />
         </Grid.Col>
-
+        <Grid.Col span={12} mb="md">
+          <Title order={3}>Assignments</Title>
+        </Grid.Col>
+        <Grid.Col span={12} mb="md">
+          <Center>
+            <AssignmentTile 
+              title="Maths"
+              description="Learn Maths with our interactive quizzes!"
+              link="../Maths"
+              background={Maths}
+            />
+            <AssignmentTile 
+              title="Arts"
+              description="Release your inner artist!"
+              link="../Arts"
+              background={Arts}
+            />
+            <AssignmentTile 
+              title="Science"
+              description="Learn about the world around you!"
+              link="../Science"
+              background={Science}
+            />
+            <AssignmentTile 
+              title="English"
+              description="Improve your English skills!"
+              link="../English"
+              background={English}
+            />
+          </Center>
+        </Grid.Col>
+        <Grid.Col span={12} mb="md">
+          <Divider my="sm" variant='solid' />
+        </Grid.Col>
       </Grid>
     </Container>
 

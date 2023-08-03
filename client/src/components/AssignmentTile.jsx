@@ -6,7 +6,9 @@ import { ArrowRight, QuestionMark } from 'tabler-icons-react';
 import { formatDueDate } from '../utils/dateFormatter';
 
 const Tile = styled.div`
-    ${BlueOcean}
+    background: url(${props => props.background});
+    background-size: cover;
+    width: 25%;
     border-radius: 10px;
     padding: 1rem;
     text-align: center;
@@ -17,22 +19,24 @@ const Tile = styled.div`
     }
 `
 
-const QuizTile = ({ quiz }) => {
+const AssignmentTile = ({
+    title,
+    description,
+    background,
+    link,
+}) => {
     return (
-        <Tile>
+        <Tile background={background} >
             <div className="title">
-                <h2>{quiz.title}</h2>
+                <h2>{title}</h2>
             </div>
             <div className="description">
-                <p>{quiz.description}</p>
-            </div>
-            <div className="date">
-                <p>Due: {formatDueDate(quiz.date)}</p>
+                <p>{description}</p>
             </div>
 
-            <Link to={`/quiz/${quiz.id}`}>
+            <Link to={`/quiz/${link}`}>
                 <NavLink
-                    label="Start Quiz"
+                    label="View Assignment"
                     rightSection={<ArrowRight size={18} />}
                     variant="filled"
                     active
@@ -42,4 +46,4 @@ const QuizTile = ({ quiz }) => {
     );
 };
 
-export default QuizTile;
+export default AssignmentTile;
