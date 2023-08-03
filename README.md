@@ -43,7 +43,7 @@ By having access to my attendance, modules, assignments, and a calendar with due
 ## Screenshots
 ![Homepage](./client/src/assets/screenshot-Homepage.png)
 
-
+![Assignments](./client/src/assets/screenshot-Assignments.png)
 
 ## Installation
 To install the necessary dependencies, run the following command:
