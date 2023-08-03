@@ -5,9 +5,7 @@ import { QUERY_QUIZ } from '../utils/queries'
 import { useParams } from 'react-router-dom';
 import { Grid, Radio, Container, Button, Center, BackgroundImage, Text, Title } from '@mantine/core';
 import QuizImage from '../Assets/quiz.jpg';
-import { StyledBreadcrumb } from '../components/StyledBreadcrumb';
 import { Link } from 'react-router-dom';
-
 
 const dummyQuiz = {
     title: "Dummy Quiz",
@@ -32,6 +30,7 @@ const dummyQuiz = {
 const Quiz = () => {
 
     const { id } = useParams();
+    const [quizSubmmit, setQuizSubmit] = useState(false);
 
     const [quizAnswers, setQuizAnswers] = useState({});
 
@@ -56,6 +55,7 @@ const Quiz = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(quizAnswers);
+        setQuizSubmit(true);
     };
 
     return (
@@ -73,6 +73,19 @@ const Quiz = () => {
                         {/* Format date due in x days */}
                         <p>Due: {formatDueDate(quiz.date)}</p>
                         {/* Quiz Form */}
+
+                        {quizSubmmit && 
+                        <Center m="xl">
+                            <Text
+                                fz="40px"
+                                fw={700}
+                                variant="gradient"
+                                gradient={{ from: 'teal', to: 'cyan', deg: 45 }}
+                            >Quiz Submitted!</Text>
+                        </Center>
+                            
+                        }
+                        {!quizSubmmit &&
                         <form onSubmit={handleSubmit}>
                             {quiz.questions.map((question, index) => (
                                 <div key={question._id}>
@@ -94,9 +107,14 @@ const Quiz = () => {
                             ))}
                             <Button my="md" type="submit">Submit</Button>
                         </form>
-                        <StyledBreadcrumb>
-                            <Link to="/Dashboard">← Return to dashboard</Link>
-                        </StyledBreadcrumb>
+                        }
+                        <Center m="xl">
+                            
+                            <Link style={{textDecoration: 'none',color: '#fff'}} to="/Dashboard">
+                                <Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 35 }}>← Return to dashboard</Button>
+                            </Link>
+                        </Center>
+                        
                     </div>
                 </Grid.Col>
             </Grid>
