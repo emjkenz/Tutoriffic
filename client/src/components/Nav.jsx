@@ -47,21 +47,22 @@ const Navbar = () => {
             <li>
               <NavLink to="/Assignments">Assignments</NavLink>
             </li>
-            <li>
-              <NavLink to="/Attendance">Attendance</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Modules">Modules</NavLink>
-            </li>
             {loggedIn &&
               <>
                 <li>
                   <NavLink to="/Dashboard">Dashboard</NavLink>
                 </li>
               </>}
-            <li>
-              <NavLink to="/Login">Login</NavLink>
-            </li>
+            {!loggedIn &&
+              <>
+                <li>
+                  <NavLink to="/Login">Login</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/Signup">Signup</NavLink>
+                </li>
+              </>
+            }
             {loggedIn && <li>
               <Button onClick={handleLogout}>Logout</Button>
             </li>}
