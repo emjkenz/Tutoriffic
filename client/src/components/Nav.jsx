@@ -52,6 +52,9 @@ const Navbar = () => {
                 <li>
                   <NavLink to="/Dashboard">Dashboard</NavLink>
                 </li>
+                <li>
+                  <NavLink to="/Calendar">Calendar</NavLink>
+                </li>
               </>}
             {!loggedIn &&
               <>
