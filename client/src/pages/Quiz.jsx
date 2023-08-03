@@ -91,6 +91,9 @@ const Quiz = () => {
                             ))}
                             <Button my="md" type="submit">Submit</Button>
                         </form>
+                        <StyledBreadcrumb>
+                            <Link to="/Dashboard">← Return to dashboard</Link>
+                        </StyledBreadcrumb>
                     </div>
                 </Grid.Col>
             </Grid>
