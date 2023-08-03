@@ -13,7 +13,7 @@ import { Container } from '@mantine/core';
 
 const Assignments = () => {
     return (
-        <BackgroundImage src={background} style={{ height: "90vh" }}>
+        <BackgroundImage src={background} style={{ minHeight: "90vh" }} pb='xl'>
             <div>
                 <Sidebar />
                 <Center sx={{ flexDirection: "column", marginLeft: '15%' }}>
@@ -21,7 +21,7 @@ const Assignments = () => {
                     <h3 className="assText">Click play for this weeks rundown!</h3>
                 </Center>
             </div>
-            <Container size="30rem" px={2} style={{ position: 'relative', left: 250, top: 0, }}>
+            <Container size="30rem" px={2}>
                 <h4>Class Leader: Mrs Paul</h4> Welcome back students for another week of learning, fun and discovery! Before you head off to your individual modules, please view the above video so you can gain an understanding of what we are learning about this week, how it builds upon last weeks lessons, and to get a sneak peak at some of the most fun activities we have planned for you!
             </Container>
         </BackgroundImage >

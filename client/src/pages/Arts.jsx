@@ -11,16 +11,16 @@ import artKid2 from "../Assets/assignments/artKid2.jpg"
 
 const Arts = () => {
     return (
-        <BackgroundImage src={background} style={{ height: "90vh" }}>
+        <BackgroundImage src={background} style={{ minHeight: "90vh" }} pb="xl">
             <Sidebar />
-            <div>
-                <img className="artClass" src={artKid2} style={{ height: 700, width: 900, position: 'relative', left: 900, top: 50, }} />
+            <Center sx={{ flexDirection: "column", marginLeft: '15%' }}>
+                <img className="artClass" src={artKid2} style={{ height: 700, width: 900}} />
                 <h3 className="assText" style={{ position: 'relative', left: 1250, top: 40, }}>
                     Press play to begin your lesson.
                 </h3>
-            </div>
+            </Center>
 
-            <Container size="30rem" px={2} style={{ position: 'relative', left: -500, top: -500, }}>
+            <Container size="30rem" px={2}>
                 <h3>Free painting</h3> <h4>Teacher: Mrs Doubtfire</h4> In todays lesson we are unleashing our inner creativity and passions! First you will be shown an introductory video of other artists your age and what they have created, to hopefully inspire you, and then you will be free to create your own art!
                 We cannot wait to see the master pieces you will produce!
             </Container>

@@ -8,16 +8,16 @@ import { Container } from '@mantine/core';
 
 const Maths = () => {
     return (
-        <BackgroundImage src={background} style={{ height: "90vh" }}>
+        <BackgroundImage src={background} style={{ minHeight: "90vh" }} pb="xl">
             <Sidebar />
-            <div>
-                <img className="testImage" src={test} style={{ height: 600, width: 900, position: 'relative', left: 900, top: 50, }} />
-                <h3 className="assText" style={{ position: 'relative', left: 1250, top: 40, }}>
+            <Center sx={{ flexDirection: "column", marginLeft: '15%' }}>
+                <img className="testImage" src={test} style={{ height: 600, width: 900}} />
+                <h3 className="assText">
                     Press play to begin your lesson.
                 </h3>
-            </div>
+            </Center>
 
-            <Container size="30rem" px={2} style={{ position: 'relative', left: -500, top: -500, }}>
+            <Container size="30rem" px={2}>
                 <h3>Division and subtraction</h3> <h4>Teacher: Mr Miyagi</h4> In todays lesson we are building upon the skills we learned and practiced in our previous class. Now that you have mastered multiplication and addition, we are excited to help you master the fun skills of division and subtraction!
                 When you are ready, click the play button so we can get started!
             </Container>
