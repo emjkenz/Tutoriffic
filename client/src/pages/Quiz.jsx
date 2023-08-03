@@ -5,6 +5,9 @@ import { QUERY_QUIZ } from '../utils/queries'
 import { useParams } from 'react-router-dom';
 import { Grid, Radio, Container, Button, Center, BackgroundImage, Text, Title } from '@mantine/core';
 import QuizImage from '../Assets/quiz.jpg';
+import { StyledBreadcrumb } from '../components/StyledBreadcrumb';
+import { Link } from 'react-router-dom';
+
 
 const dummyQuiz = {
     title: "Dummy Quiz",
