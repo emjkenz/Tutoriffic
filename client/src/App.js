@@ -22,6 +22,7 @@ import Quiz from "./pages/Quiz";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import { useState, useEffect } from "react";
 import { isLoggedIn } from "./utils/auth";
+import CalendarView from "./pages/Calendar";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -69,6 +70,9 @@ function App() {
             </Route>
             <Route path="/Quiz/:id" element={<ProtectedRoute />}>
               <Route path="/Quiz/:id" element={<Quiz />} />
+            </Route>
+            <Route path="/Calendar" element={<ProtectedRoute />}>
+              <Route path="/Calendar" element={<CalendarView />} />
             </Route>
             <Route path="/Login" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />
